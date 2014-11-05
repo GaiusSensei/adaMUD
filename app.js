@@ -10,11 +10,21 @@ var users = require('./routes/users');
 
 var app = express();
 
+// database setup
+var db = require('./db/mssql');
+if (app.get('env') === 'development') {
+    var codiodb = require('./.codiodb');
+    db.config.user = codiodb.adamuddb_userid;
+    db.config.password = codiodb.adamuddb_password;
+    db.config.server = codiodb.adamuddb_server;
+    db.config.user = codiodb.adamuddb_userid;
+} else {
+    db.initialize();
+}
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
-// uncomment after placing your favicon in /public
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
