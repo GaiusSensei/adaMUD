@@ -1,4 +1,1 @@
-adaMUD
-======
-
-ada Multi User Dungeon
+Welcome to ada, a Multi User Dungeon :3
