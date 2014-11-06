@@ -30,3 +30,4 @@ node_modules
 # Codio
 .codio
 .codiodb.js
+.bowerrc
