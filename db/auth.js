@@ -5,15 +5,15 @@ db.login = function loginF(username, password, callback) {
         q = "select top 1 * from dbo.auth where username=\'" + username + "\' and password=\'" + SHA512(password).toString() + "\'";
     db.query(q, function qr(err, result) {
         if(err) {
-            callback(false, errors.parse(err)); // DB Error
+            callback(65535, errors.parse(err)); // DB Error
         } else if(result.length > 0) {
             if(result[0].isActive) {
-                callback(true, result[0]); // User Authenticated!
+                callback(0, result[0]); // User Authenticated!
             } else {
-                callback(false, errors.get(2)); // Inactive User
+                callback(2, errors.get(2)); // Inactive User
             }
         } else {
-            callback(false, errors.get(1)); // No Users Matched
+            callback(1, errors.get(1)); // No Users Matched
         }
     });
 };

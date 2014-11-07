@@ -10,7 +10,7 @@ router.get('/auth/login', function(req, res) {
     // Auth Login
     var auth = require('../db/auth');
     auth.login(req.query.username, req.query.password, function(result, data) {
-        if(result) {
+        if(result === 0) {
             res.json({
                 errorCode:0,
                 errorDesc:"",
